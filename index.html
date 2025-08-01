@@ -1,0 +1,152 @@
+from zipfile import ZipFile
+from pathlib import Path
+
+# Contenido del sitio web HTML
+html_content = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joyería Brillante</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fff8f0;
+      color: #333;
+    }
+    header {
+      background-color: #d4af37;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background-color: #d4af37;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .product {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 200px;
+      padding: 15px;
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Joyería Brillante</h1>
+  <p>Elegancia y distinción en cada detalle</p>
+</header>
+
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#productos">Productos</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<div class="hero" id="inicio">
+  <h1>Descubre tu brillo</h1>
+  <p>Joyas únicas para momentos inolvidables</p>
+</div>
+
+<section class="section" id="productos">
+  <h2>Nuestros Productos</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/200x150?text=Anillo" alt="Anillo de Oro">
+      <h3>Anillo de Oro</h3>
+      <p>$120.000 CLP</p>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200x150?text=Collar" alt="Collar de Plata">
+      <h3>Collar de Plata</h3>
+      <p>$85.000 CLP</p>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/200x150?text=Pulsera" alt="Pulsera de Perlas">
+      <h3>Pulsera de Perlas</h3>
+      <p>$99.000 CLP</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="nosotros">
+  <h2>Sobre Nosotros</h2>
+  <p>Joyería Brillante es una empresa familiar con más de 20 años en el mercado. Nos especializamos en joyas artesanales hechas a mano con materiales de la más alta calidad.</p>
+</section>
+
+<section class="section" id="contacto">
+  <h2>Contacto</h2>
+  <p>📍 Dirección: Calle Fina 123, Santiago, Chile</p>
+  <p>📞 Teléfono: +56 9 1234 5678</p>
+  <p>📧 Email: contacto@joyeriabrillante.cl</p>
+  <p>📷 <a href="https://instagram.com/joyeriabrillante" target="_blank">Síguenos en Instagram</a></p>
+</section>
+
+<footer>
+  <p>&copy; 2025 Joyería Brillante. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
+"""
+
+# Crear archivo HTML
+file_path = Path("index.html")
+file_path.write_text(html_content, encoding="utf-8")
+
+# Comprimir a ZIP
+zip_path = Path("joyeria_web.zip")
+with ZipFile(zip_path, "w") as zipf:
+    zipf.write(file_path, arcname="index.html")
+
+# Eliminar archivo temporal
+file_path.unlink()
+
+print("Archivo joyeria_web.zip creado con éxito.")
