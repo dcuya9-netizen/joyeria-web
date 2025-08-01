@@ -1,8 +1,3 @@
-from zipfile import ZipFile
-from pathlib import Path
-
-# Contenido del sitio web HTML
-html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -37,7 +32,9 @@ html_content = """
       text-decoration: underline;
     }
     .hero {
-      background-color: #d4af37;
+      background-image: url('https://example.com/joyeria.jpg');
+      background-size: cover;
+      background-position: center;
       color: white;
       text-align: center;
       padding: 100px 20px;
@@ -99,17 +96,17 @@ html_content = """
   <h2>Nuestros Productos</h2>
   <div class="products">
     <div class="product">
-      <img src="https://via.placeholder.com/200x150?text=Anillo" alt="Anillo de Oro">
+      <img src="https://example.com/anillo.jpg" alt="Anillo de Oro">
       <h3>Anillo de Oro</h3>
       <p>$120.000 CLP</p>
     </div>
     <div class="product">
-      <img src="https://via.placeholder.com/200x150?text=Collar" alt="Collar de Plata">
+      <img src="https://example.com/collar.jpg" alt="Collar de Plata">
       <h3>Collar de Plata</h3>
       <p>$85.000 CLP</p>
     </div>
     <div class="product">
-      <img src="https://via.placeholder.com/200x150?text=Pulsera" alt="Pulsera de Perlas">
+      <img src="https://example.com/pulsera.jpg" alt="Pulsera de Perlas">
       <h3>Pulsera de Perlas</h3>
       <p>$99.000 CLP</p>
     </div>
@@ -135,18 +132,3 @@ html_content = """
 
 </body>
 </html>
-"""
-
-# Crear archivo HTML
-file_path = Path("index.html")
-file_path.write_text(html_content, encoding="utf-8")
-
-# Comprimir a ZIP
-zip_path = Path("joyeria_web.zip")
-with ZipFile(zip_path, "w") as zipf:
-    zipf.write(file_path, arcname="index.html")
-
-# Eliminar archivo temporal
-file_path.unlink()
-
-print("Archivo joyeria_web.zip creado con éxito.")
